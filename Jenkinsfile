@@ -39,5 +39,17 @@ pipeline {
                 }
             }
         }
+        stage('Build & Push to Docker Registry') {
+            steps {
+                dir ('EcommerceApp') {
+                    script {
+                    withDockerRegistry(credentialsId: 'docker-jenkins', toolName: 'docker') {
+                        sh "docker build -t samonclique/ecommerceapp:latest ."
+                        sh "docker push samonclique/ecommerceapp:latest"
+                        }
+                    }
+                }
+            }
+        }
     }
 }

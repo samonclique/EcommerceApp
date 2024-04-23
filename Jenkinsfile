@@ -32,7 +32,7 @@ pipeline {
                 echo "Analyzing with SonarQube.."
                 script {
                     dir ('EcommerceApp') {
-                        withSonarQubeEnv(credentialsId: 'sonar-token') {
+                        withSonarQubeEnv(credentialsId: 'jenkins-sonar-key') {
                             sh "${ScannerHome}/bin/sonar-scanner -Dsonar.projectKey=ecommerce-app -Dsonar.java.binaries=."
                         }
                     }
